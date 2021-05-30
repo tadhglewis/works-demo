@@ -4,18 +4,18 @@ type WorkUrl = {
 };
 
 export type Exif = {
-  model: string;
-  software: string;
-  isoSpeedRatings: string;
-  dateTime: string;
-  make: string;
+  model?: string;
+  software?: string;
+  isoSpeedRatings?: string;
+  dateTime?: string;
+  make?: string;
 };
 
 type Work = {
   id: string;
-  filename: string;
-  imageWidth: string;
-  imageHeight: string;
+  filename?: string;
+  imageWidth?: string;
+  imageHeight?: string;
   urls: WorkUrl[];
   exif: Exif;
 };

@@ -38,6 +38,7 @@ const Operand = styled.span`
 const Works = () => {
   const { works, loading, error, addToFilter, removeFromFilter, filters } =
     useWorks();
+
   return (
     <div>
       <Filters>

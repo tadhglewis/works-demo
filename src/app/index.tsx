@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ModernLayout from '../layout/ModernLayout';
+import ModernLayout from '../layout/modernLayout';
 import Works from './works';
 
 const Title = styled.h1`

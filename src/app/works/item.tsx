@@ -53,7 +53,7 @@ const CreatedDateTime = styled.div`
 `;
 
 interface ItemProps extends Work {
-  addToFilter: (key: keyof Exif, value: string) => void;
+  addToFilter: (key: keyof Exif, value: string | undefined) => void;
 }
 
 const Item = ({ filename, urls, exif, addToFilter }: ItemProps) => {
