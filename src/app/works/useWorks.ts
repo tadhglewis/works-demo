@@ -26,7 +26,7 @@ export const getWorks = gql`
 
 const useWorks = () => {
   const [filters, setFilters] = useState<Partial<Record<keyof Exif, string[]>>>(
-    { make: ['Test'] },
+    {},
   );
   const { data, loading, error } = useQuery<{ works: Work[] }>(getWorks, {
     onError: () => {
