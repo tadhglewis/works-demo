@@ -6,7 +6,7 @@ const errorLink = onError(({ networkError, response, graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
-  uri: 'https://take-home-test-gql.herokuapp.com/query',
+  uri: process.env.REACT_APP_ENDPOINT,
   cache: new InMemoryCache(),
   link: errorLink,
 });

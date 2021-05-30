@@ -1,7 +1,16 @@
+import styled from 'styled-components';
+import ModernLayout from '../layout/ModernLayout';
+import Works from './works';
+
+const Title = styled.h1`
+  text-align: center;
+`;
+
 const App = () => (
-  <div>
-    <h1>Test</h1>
-  </div>
+  <ModernLayout>
+    <Title>Products Demo</Title>
+    <Works />
+  </ModernLayout>
 );
 
 export default App;
