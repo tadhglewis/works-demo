@@ -50,7 +50,7 @@ const useWorks = () => {
       ...prev,
       [key]: [
         ...(prev[key] || []),
-        ...(value && !prev[key]?.includes(value) ? [value] : []),
+        ...(!prev[key]?.includes(value || '') ? [value] : []),
       ],
     }));
 

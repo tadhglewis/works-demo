@@ -58,7 +58,7 @@ interface ItemProps extends Work {
 
 const Item = ({ filename, urls, exif, addToFilter }: ItemProps) => {
   const details = Object.entries(exif).filter(
-    (value) => value[0] !== '__typename' && value[0] !== 'dateTime' && value[1],
+    (value) => value[0] !== '__typename' && value[0] !== 'dateTime',
   );
 
   return (
@@ -79,7 +79,7 @@ const Item = ({ filename, urls, exif, addToFilter }: ItemProps) => {
             key={detail[0]}
             onClick={() => addToFilter(detail[0] as keyof Exif, detail[1])}
           >
-            {camelCaseToSentenace(detail[0])}: {detail[1]}
+            {camelCaseToSentenace(detail[0])}: {detail[1] || 'Unknown'}
           </Detail>
         ))}
       </Details>

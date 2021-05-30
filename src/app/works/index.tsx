@@ -46,7 +46,8 @@ const Works = () => {
             key={key + value}
             onClick={() => removeFromFilter(key, value)}
           >
-            {camelCaseToSentenace(key)} <Operand>equals</Operand> {value} ×
+            {camelCaseToSentenace(key)} <Operand>equals</Operand>{' '}
+            {value || 'Unknown'} ×
           </Filter>
         ))}
       </Filters>
