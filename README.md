@@ -1,4 +1,5 @@
 # works-demo
+[![Test](https://github.com/tadhglewis/works-demo/actions/workflows/test.yml/badge.svg)](https://github.com/tadhglewis/works-demo/actions/workflows/test.yml)
 
 View live demo: [https://works-demo.pages.dev](https://works-demo.pages.dev/)
 
