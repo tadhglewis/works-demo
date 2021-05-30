@@ -27,7 +27,7 @@ const Filter = styled.span`
   cursor: pointer;
   transition: 0.3s;
   &:hover {
-    background-color: rgb(69 134 255 / 10%);
+    background-color: rgb(255 69 69 / 10%);
   }
 `;
 
@@ -41,11 +41,11 @@ const Works = () => {
   return (
     <div>
       <Filters>
-        {Object.keys(filters).map((filterKey) =>
-          filters[filterKey as keyof Exif]?.map((value) => (
+        {(Object.keys(filters) as (keyof Exif)[]).map((filterKey) =>
+          filters[filterKey]?.map((value) => (
             <Filter
               key={filterKey + value}
-              onClick={() => removeFromFilter(filterKey as keyof Exif, value)}
+              onClick={() => removeFromFilter(filterKey, value)}
             >
               {camelCaseToSentenace(filterKey)} <Operand>equals</Operand>{' '}
               {value} ×

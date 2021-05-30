@@ -26,18 +26,16 @@ const getWorks = gql`
 
 const useWorks = () => {
   const [filters, setFilters] = useState<Partial<Record<keyof Exif, string[]>>>(
-    { make: ['Canon', 'LEICA'] },
+    {},
   );
   const { data, loading, error } = useQuery<{ works: Work[] }>(getWorks);
 
-  // Filtering should really be done backend and add a argument to the graphql query for exif details
+  // Filtering should really be done backend and add a argument to the graphql query for exif details - client side filtering is bad
   const filteredData = data?.works.filter(({ exif }) =>
-    Object.keys(filters)
+    (Object.keys(filters) as (keyof Exif)[])
       .map((filterKey) =>
-        filters[filterKey as keyof Exif]?.length
-          ? filters[filterKey as keyof Exif]?.includes(
-              exif[filterKey as keyof Exif],
-            )
+        filters[filterKey]?.length
+          ? filters[filterKey]?.includes(exif[filterKey])
           : true,
       )
       .every((x) => Boolean(x)),
