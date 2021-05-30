@@ -13,13 +13,15 @@ describe('useWorks', () => {
       ),
     });
 
-    expect(result.current.filters).toStrictEqual({});
+    expect(result.current.filters).toStrictEqual([]);
 
     act(() => {
       result.current.addToFilter('model', 'testing model');
     });
 
-    expect(result.current.filters).toStrictEqual({ model: ['testing model'] });
+    expect(result.current.filters).toStrictEqual([
+      { key: 'model', value: 'testing model' },
+    ]);
   });
 
   it('should remove from filters', () => {
@@ -29,19 +31,21 @@ describe('useWorks', () => {
       ),
     });
 
-    expect(result.current.filters).toStrictEqual({});
+    expect(result.current.filters).toStrictEqual([]);
 
     act(() => {
       result.current.addToFilter('model', 'testing model');
     });
 
-    expect(result.current.filters).toStrictEqual({ model: ['testing model'] });
+    expect(result.current.filters).toStrictEqual([
+      { key: 'model', value: 'testing model' },
+    ]);
 
     act(() => {
       result.current.removeFromFilter('model', 'testing model');
     });
 
-    expect(result.current.filters).toStrictEqual({ model: [] });
+    expect(result.current.filters).toStrictEqual([]);
   });
 
   it('should fetch works', async () => {
