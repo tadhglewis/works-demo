@@ -1,9 +1,9 @@
 type WorkUrl = {
-  type: string;
+  type: 'small' | 'medium' | 'large';
   link: string;
 };
 
-type Exif = {
+export type Exif = {
   model: string;
   software: string;
   isoSpeedRatings: string;
