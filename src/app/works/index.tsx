@@ -3,7 +3,6 @@ import camelCaseToSentenace from '../../formatters/camelCaseToSentenceCase';
 import Skeleton from '../../ui/skeleton';
 import Item from './item';
 import useWorks from './useWorks';
-import { Exif } from './Work';
 
 const WorksBox = styled.div`
   display: flex;
@@ -42,17 +41,14 @@ const Works = () => {
   return (
     <div>
       <Filters>
-        {(Object.keys(filters) as (keyof Exif)[]).map((filterKey) =>
-          filters[filterKey]?.map((value) => (
-            <Filter
-              key={filterKey + value}
-              onClick={() => removeFromFilter(filterKey, value)}
-            >
-              {camelCaseToSentenace(filterKey)} <Operand>equals</Operand>{' '}
-              {value} ×
-            </Filter>
-          )),
-        )}
+        {filters.map(({ key, value }) => (
+          <Filter
+            key={key + value}
+            onClick={() => removeFromFilter(key, value)}
+          >
+            {camelCaseToSentenace(key)} <Operand>equals</Operand> {value} ×
+          </Filter>
+        ))}
       </Filters>
       <WorksBox>
         {error?.message}

@@ -26,7 +26,7 @@ export const getWorks = gql`
 
 const useWorks = () => {
   const [filters, setFilters] = useState<Partial<Record<keyof Exif, string[]>>>(
-    {},
+    { make: ['Test'] },
   );
   const { data, loading, error } = useQuery<{ works: Work[] }>(getWorks, {
     onError: () => {
@@ -45,25 +45,43 @@ const useWorks = () => {
       .every((x) => Boolean(x)),
   );
 
+  const addToFilter = (key: keyof Exif, value: string | undefined) =>
+    setFilters((prev) => ({
+      ...prev,
+      [key]: [
+        ...(prev[key] || []),
+        ...(value && !prev[key]?.includes(value) ? [value] : []),
+      ],
+    }));
+
+  const removeFromFilter = (
+    key: keyof Exif,
+    valueToFilter: string | undefined,
+  ) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: prev[key]?.filter((value) => value !== valueToFilter),
+    }));
+  };
+
   return {
     works: Object.keys(filters).length ? filteredData : data?.works,
     loading,
     error,
-    addToFilter: (key: keyof Exif, value: string | undefined) =>
-      setFilters((prev) => ({
-        ...prev,
-        [key]: [
-          ...(prev[key] || []),
-          ...(value && !prev[key]?.includes(value) ? [value] : []),
-        ],
-      })),
-    removeFromFilter: (key: keyof Exif, valueToFilter: string | undefined) => {
-      setFilters((prev) => ({
-        ...prev,
-        [key]: prev[key]?.filter((value) => value !== valueToFilter),
-      }));
-    },
-    filters,
+    addToFilter,
+    removeFromFilter,
+    filters: (Object.keys(filters) as (keyof Exif)[]).reduce<
+      { key: keyof Exif; value: string }[]
+    >((acc, filterKey) => {
+      acc = [
+        ...acc,
+        ...(filters[filterKey]?.map((filter) => ({
+          key: filterKey,
+          value: filter,
+        })) || []),
+      ];
+      return acc;
+    }, []),
   };
 };
 
