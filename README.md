@@ -4,6 +4,8 @@
 
 View live demo: [https://works-demo.pages.dev](https://works-demo.pages.dev/)
 
+The app is PWA compatible.
+
 Setup
 
 - run `yarn install`
