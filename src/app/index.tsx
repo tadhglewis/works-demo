@@ -8,7 +8,7 @@ const Title = styled.h1`
 
 const App = () => (
   <ModernLayout>
-    <Title>Products Demo</Title>
+    <Title>Works Demo</Title>
     <Works />
   </ModernLayout>
 );
